@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Boran Birtanır - Learn about my journey, philosophy, and creative pursuits">
+    <script src="../assets/js/device-detection.js"></script>
+    <title>About | Boran Birtanır</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/mobile-nav-fix.css">
+    <link rel="stylesheet" href="assets/css/spacing-fix.css">
+
+    <style>
+        /* Mobile-specific About Page Styles */
+        .about-hero {
+            position: relative;
+            padding: 2rem 0;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.7)),
+                        url('https://source.unsplash.com/random/1200x800/?cosmos,abstract') no-repeat center/cover;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--color-bg), transparent);
+        }
+
+        .about-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #6E56CF, #3E9BC0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientFlow 5s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .profile-image {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 1rem auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--color-accent-primary);
+            box-shadow: 0 0 20px rgba(110, 86, 207, 0.5);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-section {
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 16px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .about-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.7rem;
+        }
+
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--color-accent-primary), var(--color-accent-secondary));
+        }
+
+        .about-section p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .philosophy-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        .philosophy-card {
+            padding: 1.5rem;
+            background: rgba(25, 25, 25, 0.7);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .philosophy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .philosophy-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(110, 86, 207, 0.2), rgba(62, 155, 192, 0.2));
+            color: var(--color-accent-primary);
+        }
+
+        .skills-section {
+            padding: 1rem 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(25, 25, 25, 0.7);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent-primary);
+        }
+
+        .progress-container {
+            margin-top: 0.5rem;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(to right, var(--color-accent-primary), var(--color-accent-secondary));
+            width: 0; /* Ensure bars start at 0 width */
+            transition: width 1.5s ease;
+        }
+
+        .milestones {
+            position: relative;
+            padding-left: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .milestones::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 8px;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--color-accent-primary), var(--color-accent-secondary));
+        }
+
+        .milestone {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+        }
+
+        .milestone::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: -2rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-accent-primary);
+            box-shadow: 0 0 10px rgba(110, 86, 207, 0.7);
+        }
+
+        .milestone-date {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            color: var(--color-accent-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .milestone-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .interest-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            text-align: center;
+            background: rgba(25, 25, 25, 0.7);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .interest-item:hover {
+            transform: scale(1.05);
+        }
+
+        .interest-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent-primary);
+        }
+
+        /* Animation classes */
+        .fade-in-bottom {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInBottom 0.8s forwards;
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: fadeInLeft 0.8s forwards;
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            animation: fadeInRight 0.8s forwards;
+        }
+
+        @keyframes fadeInBottom {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Animation delays */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="animated-background">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header scrolled">
+        <div class="container">
+            <a href="index.html" class="logo">Boran<span>Birtanır</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="diary.html">Diary</a></li>
+                    <li><a href="socials.html">Socials</a></li>
+                </ul>
+            </nav>
+            <button class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <button class="close-btn">&times;</button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="diary.html">Diary</a></li>
+            <li><a href="socials.html">Socials</a></li>
+        </ul>
+    </div>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About Me</h1>
+            <p>Philosophy, Technology, and Creative Expression</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <div class="container">
+        <!-- Bio Section -->
+        <section class="about-section fade-in-bottom">
+            <h2>My Story</h2>
+            <p>Hello, I'm Boran Birtanır. I'm a thinker, creator, and explorer at heart. My journey has been shaped by a deep fascination with the big questions of existence, consciousness, and human potential.</p>
+
+            <p>With a background spanning technology and philosophy, I've dedicated myself to exploring how human creativity and technological innovation intersect. I believe we can harness technology to enhance rather than diminish our humanity by understanding both technical and philosophical dimensions.</p>
+
+            <p>My interests include AI-generated art, philosophical explorations of consciousness, and finding meaningful balance in our increasingly digital lives. Through this website, I share my journey, insights, and creative explorations.</p>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="about-section fade-in-bottom delay-1">
+            <h2>My Philosophy</h2>
+            <div class="philosophy-cards">
+                <div class="philosophy-card fade-in-left delay-1">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-lightbulb fa-2x"></i>
+                    </div>
+                    <h3 data-translate="consciousness_title">Consciousness as Primary</h3>
+                    <p data-translate="consciousness_desc">I'm intrigued by idealist philosophy—the notion that consciousness might be more fundamental than matter. This perspective opens new ways of understanding our place in the universe.</p>
+                </div>
+
+                <div class="philosophy-card fade-in-left delay-2">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-balance-scale fa-2x"></i>
+                    </div>
+                    <h3>Mindful Technology</h3>
+                    <p>Technology should serve human flourishing, not diminish it. I explore ways to engage with digital tools mindfully, using them as extensions of our creativity rather than replacements for it.</p>
+                </div>
+
+                <div class="philosophy-card fade-in-left delay-3">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3 data-translate="uncertainty_title">Embracing Uncertainty</h3>
+                    <p data-translate="uncertainty_desc">I believe that embracing uncertainty is essential for growth and discovery. By remaining open to the unknown, we create space for wonder and new possibilities.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="about-section fade-in-bottom delay-2">
+            <h2 data-translate="skills_title">Skills & Interests</h2>
+            <div class="skills-grid">
+                <div class="skill-item fade-in-bottom delay-1">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 data-translate="skill_programming">Programming</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar" data-width="85"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item fade-in-bottom delay-2">
+                    <div class="skill-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 data-translate="skill_digital_art">Digital Art</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar" data-width="78"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item fade-in-bottom delay-3">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 data-translate="skill_philosophy">Philosophy</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar" data-width="90"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item fade-in-bottom delay-4">
+                    <div class="skill-icon">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3 data-translate="skill_writing">Writing</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar" data-width="82"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey Section -->
+        <section class="about-section fade-in-bottom delay-3">
+            <h2>My Journey</h2>
+            <div class="milestones">
+                <div class="milestone fade-in-left">
+                    <div class="milestone-date">2012</div>
+                    <div class="milestone-title">First Encounter with Philosophy</div>
+                    <p>Discovered Alan Watts and began exploring Eastern philosophical traditions, forever changing how I view consciousness and reality.</p>
+                </div>
+
+                <div class="milestone fade-in-left delay-1">
+                    <div class="milestone-date">2015</div>
+                    <div class="milestone-title">Deep Dive into Technology</div>
+                    <p>Began studying programming and digital design, fascinated by the potential of technology to expand human creativity.</p>
+                </div>
+
+                <div class="milestone fade-in-left delay-2">
+                    <div class="milestone-date">2020</div>
+                    <div class="milestone-title">AI Art Exploration</div>
+                    <p>Started experimenting with AI art tools like Stable Diffusion, exploring the boundary between human and machine creativity.</p>
+                </div>
+
+                <div class="milestone fade-in-left delay-3">
+                    <div class="milestone-date">2023</div>
+                    <div class="milestone-title">Digital Detox Journey</div>
+                    <p>Embarked on a practice of regular digital detox periods, seeking to cultivate a healthier relationship with technology.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interests Section -->
+        <section class="about-section fade-in-bottom delay-4">
+            <h2>Personal Interests</h2>
+            <div class="interests-grid">
+                <div class="interest-item fade-in-bottom">
+                    <div class="interest-icon">
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                    <span>Hiking</span>
+                </div>
+
+                <div class="interest-item fade-in-bottom delay-1">
+                    <div class="interest-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <span>Reading</span>
+                </div>
+
+                <div class="interest-item fade-in-bottom delay-2">
+                    <div class="interest-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <span>Music</span>
+                </div>
+
+                <div class="interest-item fade-in-bottom delay-3">
+                    <div class="interest-icon">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <span>Chess</span>
+                </div>
+
+                <div class="interest-item fade-in-bottom delay-4">
+                    <div class="interest-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <span>Photography</span>
+                </div>
+
+                <div class="interest-item fade-in-bottom delay-4">
+                    <div class="interest-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <span>Travel</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Boran Birtanır</h3>
+                    <p data-translate="footer_description">A personal journey through art, technology, and philosophy.</p>
+                </div>
+                <div class="footer-navigation">
+                    <h4 data-translate="footer_navigation">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html" data-translate="nav_home">Home</a></li>
+                        <li><a href="about.html" data-translate="nav_about">About</a></li>
+                        <li><a href="gallery.html" data-translate="nav_gallery">Gallery</a></li>
+                        <li><a href="diary.html" data-translate="nav_diary">Diary</a></li>
+                        <li><a href="socials.html" data-translate="nav_socials">Socials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4 data-translate="footer_connect">Connect</h4>
+                    <div class="social-icons">
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://discord.com/" target="_blank"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-translate="footer_copyright">&copy; 2023 Boran Birtanır. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/translation.js"></script>
+    <script src="assets/js/device-detection-mobile.js"></script>
+    <script>
+        // Initialize progress bars
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+
+            // Create intersection observer to animate progress bars when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const width = bar.getAttribute('data-width') + '%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 300);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            // Observe each progress bar
+            progressBars.forEach(bar => {
+                observer.observe(bar);
+            });
+        });
+    </script>
+</body>
+</html>

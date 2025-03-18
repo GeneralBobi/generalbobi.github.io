@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline | Boran Birtanır</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/mobile-nav-fix.css">
+    <link rel="stylesheet" href="assets/css/language-toggle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="assets/images/bobi-icon.svg" type="image/svg+xml">
+    <style>
+        /* Timeline page specific styles */
+        .timeline-container {
+            padding-top: 50px;
+        }
+
+        .timeline-intro {
+            max-width: 800px;
+            margin: 0 auto var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: rgba(110, 86, 207, 0.05);
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--color-accent-primary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .timeline-wrapper {
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--color-accent-primary), var(--color-accent-secondary));
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            direction: rtl;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            direction: ltr;
+            margin-left: auto;
+            margin-right: var(--spacing-xl);
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            margin-left: var(--spacing-xl);
+        }
+
+        .timeline-content {
+            background-color: var(--color-bg-secondary);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--color-border);
+            max-width: 400px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-accent-primary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background-color: var(--color-accent-primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-accent-primary);
+        }
+
+        .timeline-desc {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+
+        .timeline-category {
+            display: inline-block;
+            padding: 3px 10px;
+            background-color: rgba(110, 86, 207, 0.1);
+            border-radius: 20px;
+            color: var(--color-accent-secondary);
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+
+        .timeline-image {
+            margin-top: var(--spacing-md);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .timeline-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .timeline-content:hover .timeline-image img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-wrapper::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item:nth-child(even),
+            .timeline-item:nth-child(odd) {
+                direction: ltr;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content,
+            .timeline-item:nth-child(odd) .timeline-content {
+                margin-left: 60px;
+                margin-right: auto;
+                text-align: left;
+                max-width: calc(100% - 70px);
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="animated-background">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header scrolled">
+        <div class="container">
+            <a href="index.html" class="logo">Boran<span>Birtanır</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="timeline.html" class="active">Timeline</a></li>
+                    <li><a href="diary.html">Diary</a></li>
+                    <li><a href="socials.html">Socials</a></li>
+                </ul>
+            </nav>
+            <button class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <button class="close-btn">&times;</button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="diary.html">Diary</a></li>
+            <li><a href="socials.html">Socials</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title fade-in">My Journey</h1>
+            <div class="section-divider">
+                <span></span><i class="fas fa-history"></i><span></span>
+            </div>
+            <p class="page-description fade-in" style="animation-delay: 0.3s;">Key moments and milestones that have shaped my path</p>
+        </div>
+    </section>
+
+    <!-- Timeline Content -->
+    <section class="timeline-container section">
+        <div class="container">
+            <div class="timeline-intro fade-in-up">
+                <p>Life is a continuous journey of exploration and growth. This timeline captures some of the pivotal moments in my personal and intellectual development—from early philosophical discoveries to creative experiments with emerging technologies. Each experience has contributed to my evolving perspective on consciousness, creativity, and human potential.</p>
+            </div>
+
+            <div class="timeline-wrapper">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item fade-in-up">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2012</span>
+                        <h3 class="timeline-title">First Encounter with Eastern Philosophy</h3>
+                        <p class="timeline-desc">Discovered the works of Alan Watts and began exploring Buddhist and Taoist concepts that fundamentally shifted my understanding of consciousness and reality.</p>
+                        <div>
+                            <span class="timeline-category">Philosophy</span>
+                            <span class="timeline-category">Consciousness</span>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://source.unsplash.com/random/400x250/?meditation,philosophy" alt="Eastern Philosophy">
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2015</span>
+                        <h3 class="timeline-title">Deep Dive into Technology</h3>
+                        <p class="timeline-desc">Began studying programming and digital design, fascinated by the potential of technology to expand human creativity and problem-solving capabilities.</p>
+                        <div>
+                            <span class="timeline-category">Technology</span>
+                            <span class="timeline-category">Creativity</span>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://source.unsplash.com/random/400x250/?code,technology" alt="Programming">
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="timeline-item fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2018</span>
+                        <h3 class="timeline-title">Beginning of Digital Minimalism</h3>
+                        <p class="timeline-desc">After noticing the impact of constant connectivity on my attention and wellbeing, I began experimenting with intentional digital habits and regular technology fasts.</p>
+                        <div>
+                            <span class="timeline-category">Mindfulness</span>
+                            <span class="timeline-category">Digital Balance</span>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://source.unsplash.com/random/400x250/?minimalism,nature" alt="Digital Minimalism">
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="timeline-item fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2020</span>
+                        <h3 class="timeline-title">AI Art Exploration</h3>
+                        <p class="timeline-desc">Started experimenting with AI art tools like Stable Diffusion, exploring the fascinating boundary between human creativity and machine intelligence.</p>
+                        <div>
+                            <span class="timeline-category">AI</span>
+                            <span class="timeline-category">Art</span>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://source.unsplash.com/random/400x250/?ai,art" alt="AI Art">
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- Timeline Item 5 -->
+                <div class="timeline-item fade-in-up" style="animation-delay: 0.5s;">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2021</span>
+                        <h3 class="timeline-title">Idealist Philosophy Deep Dive</h3>
+                        <p class="timeline-desc">Discovered Bernardo Kastrup's work on idealism, which resonated deeply with my intuitions about consciousness being fundamental rather than emergent from matter.</p>
+                        <div>
+                            <span class="timeline-category">Philosophy</span>
+                            <span class="timeline-category">Consciousness</span>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://source.unsplash.com/random/400x250/?consciousness,abstract" alt="Consciousness Studies">
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- Timeline Item 6 -->
+                <div class="timeline-item fade-in-up" style="animation-delay: 0.6s;">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022</span>
+                        <h3 class="timeline-title">Music Composition with AI</h3>
+                        <p class="timeline-desc">Began experimenting with AI music generation tools like Suno, creating compositions that blend human emotional intent with algorithmic patterns.</p>
+                        <div>
+                            <span class="timeline-category">Music</span>
+                            <span class="timeline-category">AI</span>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://source.unsplash.com/random/400x250/?music,digital" alt="AI Music">
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- Timeline Item 7 -->
+                <div class="timeline-item fade-in-up" style="animation-delay: 0.7s;">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023</span>
+                        <h3 class="timeline-title">Digital Detox Journey</h3>
+                        <p class="timeline-desc">Embarked on a practice of regular digital detox periods, seeking to cultivate a healthier relationship with technology while preserving its benefits.</p>
+                        <div>
+                            <span class="timeline-category">Wellbeing</span>
+                            <span class="timeline-category">Balance</span>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://source.unsplash.com/random/400x250/?nature,detox" alt="Digital Detox">
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- Timeline Item 8 -->
+                <div class="timeline-item fade-in-up" style="animation-delay: 0.8s;">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024</span>
+                        <h3 class="timeline-title">Personal Website Launch</h3>
+                        <p class="timeline-desc">Created this digital space to share my journey, creative explorations, and philosophical reflections with a wider community of like-minded explorers.</p>
+                        <div>
+                            <span class="timeline-category">Web</span>
+                            <span class="timeline-category">Creativity</span>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://source.unsplash.com/random/400x250/?website,digital" alt="Website Launch">
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Boran<span>Birtanır</span></h3>
+                    <p>A personal journey through art, technology, and philosophy.</p>
+                </div>
+                <div class="footer-navigation">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="timeline.html">Timeline</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                        <li><a href="socials.html">Socials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Boran Birtanır. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/translation.js"></script>
+    <script src="assets/js/device-detection-mobile.js"></script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connect with Boran Birtanır across various social media platforms.">
+    <title>Boran Birtanır | Connect</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/mobile-nav-fix.css">
+    <link rel="stylesheet" href="assets/css/language-toggle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="assets/images/bobi-icon.svg" type="image/svg+xml">
+    <style>
+        /* Hero styles */
+        .socials-hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0 0;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .animation-container {
+            width: 100%;
+            height: 120px;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        #connection-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .connection-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .connection-title i {
+            font-size: 1.6rem;
+            color: var(--color-accent-primary);
+            margin-right: 0.8rem;
+        }
+
+        .connection-title h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        /* Social Media Grid */
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 0 1.5rem;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--color-accent-primary);
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .social-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            border-color: var(--color-accent-primary);
+            background: rgba(25, 25, 25, 0.8);
+        }
+
+        .social-item:hover::before {
+            width: 100%;
+            height: 4px;
+            opacity: 0.2;
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-right: 1.5rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .social-item:hover .social-icon {
+            transform: scale(1.1);
+        }
+
+        .social-info {
+            flex-grow: 1;
+        }
+
+        .social-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0 0 0.4rem;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--color-text-primary);
+        }
+
+        .social-handle {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            display: block;
+        }
+
+        .social-arrow {
+            margin-left: 1rem;
+            font-size: 1.2rem;
+            color: var(--color-accent-primary);
+            transform: translateX(-5px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .social-item:hover .social-arrow {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* Colors for each platform */
+        /* X/Twitter */
+        .twitter .social-icon {
+            background: rgba(0, 0, 0, 0.4);
+            color: #ffffff;
+        }
+        .twitter:hover {
+            background: rgba(15, 20, 25, 0.6);
+        }
+
+        /* Instagram */
+        .instagram .social-icon {
+            background: linear-gradient(45deg, rgba(255, 220, 128, 0.2), rgba(194, 31, 141, 0.2), rgba(88, 81, 219, 0.2));
+            color: #E1306C;
+        }
+        .instagram:hover {
+            background: rgba(25, 25, 35, 0.8);
+        }
+
+        /* GitHub */
+        .github .social-icon {
+            background: rgba(51, 51, 51, 0.4);
+            color: #f0f6fc;
+        }
+        .github:hover {
+            background: rgba(25, 25, 35, 0.8);
+        }
+
+        /* LinkedIn */
+        .linkedin .social-icon {
+            background: rgba(0, 119, 181, 0.2);
+            color: #0077B5;
+        }
+        .linkedin:hover {
+            background: rgba(25, 25, 35, 0.8);
+        }
+
+        /* Discord */
+        .discord .social-icon {
+            background: rgba(114, 137, 218, 0.2);
+            color: #7289DA;
+        }
+        .discord:hover {
+            background: rgba(25, 25, 35, 0.8);
+        }
+
+        /* Email */
+        .email .social-icon {
+            background: linear-gradient(135deg, rgba(110, 86, 207, 0.2), rgba(62, 155, 192, 0.2));
+            color: var(--color-accent-primary);
+        }
+        .email:hover {
+            background: rgba(25, 25, 35, 0.8);
+        }
+
+        /* Animation delay classes */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="animated-background">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header scrolled">
+        <div class="container">
+            <a href="index.html" class="logo">Boran<span>Birtanır</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="diary.html">Diary</a></li>
+                    <li><a href="socials.html" class="active">Socials</a></li>
+                </ul>
+            </nav>
+            <button class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <button class="close-btn">&times;</button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="diary.html">Diary</a></li>
+            <li><a href="socials.html" class="active">Socials</a></li>
+        </ul>
+    </div>
+
+    <!-- Animation Hero -->
+    <section class="socials-hero">
+        <div class="container">
+            <div class="animation-container">
+                <canvas id="connection-canvas"></canvas>
+            </div>
+            <div class="connection-title">
+                <i class="fas fa-network-wired"></i>
+                <h2 data-translate="socials_title">Connect With Me</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Grid -->
+    <div class="social-grid">
+        <!-- X (Twitter) -->
+        <a href="https://twitter.com/" target="_blank" class="social-item twitter">
+            <div class="social-icon">
+                <i class="fab fa-x-twitter"></i>
+            </div>
+            <div class="social-info">
+                <h3 class="social-name">X</h3>
+                <span class="social-handle">@boranbirtan</span>
+            </div>
+            <div class="social-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://instagram.com/" target="_blank" class="social-item instagram delay-1">
+            <div class="social-icon">
+                <i class="fab fa-instagram"></i>
+            </div>
+            <div class="social-info">
+                <h3 class="social-name">Instagram</h3>
+                <span class="social-handle">@boranbirtan</span>
+            </div>
+            <div class="social-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/" target="_blank" class="social-item github delay-2">
+            <div class="social-icon">
+                <i class="fab fa-github"></i>
+            </div>
+            <div class="social-info">
+                <h3 class="social-name">GitHub</h3>
+                <span class="social-handle">boranbirtan</span>
+            </div>
+            <div class="social-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/" target="_blank" class="social-item linkedin delay-3">
+            <div class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+            </div>
+            <div class="social-info">
+                <h3 class="social-name">LinkedIn</h3>
+                <span class="social-handle">boranbirtan</span>
+            </div>
+            <div class="social-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
+
+        <!-- Discord -->
+        <a href="https://discord.com/" target="_blank" class="social-item discord delay-4">
+            <div class="social-icon">
+                <i class="fab fa-discord"></i>
+            </div>
+            <div class="social-info">
+                <h3 class="social-name">Discord</h3>
+                <span class="social-handle">boranbirtan</span>
+            </div>
+            <div class="social-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:contact@boranbirtan.com" class="social-item email delay-5">
+            <div class="social-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="social-info">
+                <h3 class="social-name">Email</h3>
+                <span class="social-handle">contact@boranbirtan.com</span>
+            </div>
+            <div class="social-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Boran Birtanır</h3>
+                    <p data-translate="footer_description">A personal journey through art, technology, and philosophy.</p>
+                </div>
+                <div class="footer-navigation">
+                    <h4 data-translate="footer_navigation">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html" data-translate="nav_home">Home</a></li>
+                        <li><a href="about.html" data-translate="nav_about">About</a></li>
+                        <li><a href="gallery.html" data-translate="nav_gallery">Gallery</a></li>
+                        <li><a href="diary.html" data-translate="nav_diary">Diary</a></li>
+                        <li><a href="socials.html" data-translate="nav_socials">Socials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4 data-translate="footer_connect">Connect</h4>
+                    <div class="social-icons">
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://discord.com/" target="_blank"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-translate="footer_copyright">© 2023 Boran Birtanır. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/translation.js"></script>
+    <script src="assets/js/device-detection-mobile.js"></script>
+    <script src="assets/js/connection-animation.js"></script>
+</body>
+</html>

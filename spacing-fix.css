@@ -1,0 +1,25 @@
+/* Fix for header spacing on mobile pages */
+.gallery-hero, .diary-hero, .socials-hero, .about-hero {
+    padding-top: 5rem !important; /* Increase top padding to push content down */
+    min-height: 180px; /* Ensure minimum height for the hero section */
+}
+
+.gallery-hero h1, .diary-hero h1, .socials-hero h1, .about-hero h1 {
+    margin-top: 1.5rem; /* Add margin to the title */
+}
+
+/* Ensure container has proper spacing */
+.container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Fix potential overlap with header */
+.header {
+    height: 70px; /* Fixed height for header */
+}
+
+/* Add spacing after the fixed header */
+.header + section, .header + div {
+    padding-top: 1rem;
+}

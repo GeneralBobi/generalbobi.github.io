@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gallery of Boran Birtanır - AI-generated art and creative expressions">
+    <script src="../assets/js/device-detection.js"></script>
+    <title>Gallery | Boran Birtanır</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/mobile-nav-fix.css">
+    <link rel="stylesheet" href="assets/css/spacing-fix.css">
+
+    <style>
+        /* Mobile-optimized Gallery Page Styles */
+        .gallery-hero {
+            position: relative;
+            padding: 2rem 0;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.7)),
+                        url('https://source.unsplash.com/random/800x600/?abstract,art') no-repeat center/cover;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .gallery-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: linear-gradient(to top, var(--color-bg), transparent);
+        }
+
+        .gallery-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #6E56CF, #3E9BC0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gallery-intro {
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin: 0 1rem 2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border-left: 3px solid var(--color-accent-primary);
+            backdrop-filter: blur(8px);
+        }
+
+        .filter-scroll {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1.5rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .filter-scroll::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .gallery-filters {
+            display: inline-flex;
+            gap: 0.5rem;
+            padding: 0.25rem 0;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(25, 25, 25, 0.8);
+            color: var(--color-text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(110, 86, 207, 0.3);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            padding: 0 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-item-category {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item-title {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            color: white;
+        }
+
+        .gallery-item-desc {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .gallery-item.active .gallery-item-overlay,
+        .gallery-item:active .gallery-item-overlay {
+            transform: translateY(0);
+        }
+
+        /* Mobile tap behavior - show overlay on tap */
+        .gallery-item:active img {
+            transform: scale(1.05);
+        }
+
+        /* Gallery Modal */
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 90vw;
+            max-height: 90vh;
+            background-color: var(--color-bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-image-container {
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-details {
+            padding: 1.2rem;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .modal-description {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            flex-direction: column;
+        }
+
+        .modal-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-meta i {
+            color: var(--color-accent-primary);
+        }
+
+        .modal-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .modal-tag {
+            padding: 0.2rem 0.6rem;
+            background-color: rgba(110, 86, 207, 0.1);
+            border-radius: 12px;
+            font-size: 0.7rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Load more button */
+        .load-more {
+            display: block;
+            margin: 2rem auto;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(135deg, rgba(110, 86, 207, 0.1), rgba(62, 155, 192, 0.1));
+            color: white;
+            border: 1px solid var(--color-accent-primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .load-more:hover {
+            background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+            box-shadow: 0 5px 15px rgba(110, 86, 207, 0.3);
+        }
+
+        /* Animation delay classes */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="animated-background">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header scrolled">
+        <div class="container">
+            <a href="index.html" class="logo">Boran<span>Birtanır</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="diary.html">Diary</a></li>
+                    <li><a href="socials.html">Socials</a></li>
+                </ul>
+            </nav>
+            <button class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <button class="close-btn">&times;</button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="diary.html">Diary</a></li>
+            <li><a href="socials.html">Socials</a></li>
+        </ul>
+    </div>
+
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1>Visual Explorations</h1>
+            <p>A collection of AI-generated art and creative expressions</p>
+        </div>
+    </section>
+
+    <!-- Gallery Content -->
+    <div class="container">
+        <!-- Intro -->
+        <div class="gallery-intro">
+            <p>Welcome to my visual gallery — a space where I explore creativity at the intersection of human thought and artificial intelligence. Each piece represents an experiment in collaborative creation, blurring the boundaries between human and machine creativity.</p>
+        </div>
+
+        <!-- Filter Categories -->
+        <div class="filter-scroll">
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All Works</button>
+                <button class="filter-btn" data-filter="abstract">Abstract</button>
+                <button class="filter-btn" data-filter="landscape">Landscapes</button>
+                <button class="filter-btn" data-filter="conceptual">Conceptual</button>
+                <button class="filter-btn" data-filter="portrait">Portraits</button>
+                <button class="filter-btn" data-filter="digital">Digital</button>
+            </div>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid">
+            <!-- Gallery Item 1 -->
+            <div class="gallery-item delay-1" data-category="abstract">
+                <span class="gallery-item-category">Abstract</span>
+                <img src="https://source.unsplash.com/random/400x400/?abstract,colorful" alt="Neural Pathways">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Neural Pathways</h3>
+                    <p class="gallery-item-desc">An exploration of consciousness as flowing energy</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 2 -->
+            <div class="gallery-item delay-2" data-category="landscape">
+                <span class="gallery-item-category">Landscape</span>
+                <img src="https://source.unsplash.com/random/400x400/?landscape,digital" alt="Digital Horizons">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Digital Horizons</h3>
+                    <p class="gallery-item-desc">Merging natural and digital landscapes</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 3 -->
+            <div class="gallery-item delay-3" data-category="conceptual">
+                <span class="gallery-item-category">Conceptual</span>
+                <img src="https://source.unsplash.com/random/400x400/?conceptual,surreal" alt="The Observer Effect">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">The Observer Effect</h3>
+                    <p class="gallery-item-desc">A visual meditation on perception and reality</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 4 -->
+            <div class="gallery-item delay-4" data-category="portrait">
+                <span class="gallery-item-category">Portrait</span>
+                <img src="https://source.unsplash.com/random/400x400/?portrait,digital" alt="Digital Identity">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Digital Identity</h3>
+                    <p class="gallery-item-desc">Exploring the self in the digital age</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 5 -->
+            <div class="gallery-item delay-1" data-category="abstract">
+                <span class="gallery-item-category">Abstract</span>
+                <img src="https://source.unsplash.com/random/400x400/?abstract,geometric" alt="Geometric Consciousness">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Geometric Consciousness</h3>
+                    <p class="gallery-item-desc">Patterns that mirror the structure of thought</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 6 -->
+            <div class="gallery-item delay-2" data-category="digital">
+                <span class="gallery-item-category">Digital</span>
+                <img src="https://source.unsplash.com/random/400x400/?cyberpunk,digital" alt="Neural Networks">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Neural Networks</h3>
+                    <p class="gallery-item-desc">Visualizing the architecture of AI systems</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 7 -->
+            <div class="gallery-item delay-3" data-category="landscape">
+                <span class="gallery-item-category">Landscape</span>
+                <img src="https://source.unsplash.com/random/400x400/?landscape,futuristic" alt="Synthetic Wilderness">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Synthetic Wilderness</h3>
+                    <p class="gallery-item-desc">Natural beauty reimagined through an AI lens</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 8 -->
+            <div class="gallery-item delay-4" data-category="portrait">
+                <span class="gallery-item-category">Portrait</span>
+                <img src="https://source.unsplash.com/random/400x400/?portrait,abstract" alt="Fragmented Self">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Fragmented Self</h3>
+                    <p class="gallery-item-desc">Identity in the era of digital personas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load More Button -->
+        <button class="load-more">
+            <i class="fas fa-sync-alt"></i> Load More
+        </button>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div class="gallery-modal">
+        <div class="modal-content">
+            <div class="modal-close">&times;</div>
+            <div class="modal-image-container">
+                <img src="" alt="" class="modal-image">
+            </div>
+            <div class="modal-details">
+                <h2 class="modal-title"></h2>
+                <p class="modal-description"></p>
+
+                <div class="modal-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Created: <span class="modal-date"></span></span>
+                    <span><i class="fas fa-robot"></i> Tools: <span class="modal-tools"></span></span>
+                </div>
+
+                <div class="modal-tags">
+                    <!-- Tags will be added dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Boran<span>Birtanır</span></h3>
+                    <p>A personal journey through art, technology, and philosophy.</p>
+                </div>
+                <div class="footer-navigation">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                        <li><a href="socials.html">Socials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Boran Birtanır. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/translation.js"></script>
+    <script src="assets/js/device-detection-mobile.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    // Get filter value
+                    const filterValue = this.getAttribute('data-filter');
+
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Modal functionality
+            const galleryModal = document.querySelector('.gallery-modal');
+            const modalClose = document.querySelector('.modal-close');
+            const modalImage = document.querySelector('.modal-image');
+            const modalTitle = document.querySelector('.modal-title');
+            const modalDescription = document.querySelector('.modal-description');
+            const modalDate = document.querySelector('.modal-date');
+            const modalTools = document.querySelector('.modal-tools');
+            const modalTags = document.querySelector('.modal-tags');
+
+            // Gallery item click to open modal
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Get gallery item data
+                    const imgSrc = this.querySelector('img').src;
+                    const title = this.querySelector('.gallery-item-title').textContent;
+                    const desc = this.querySelector('.gallery-item-desc').textContent;
+                    const category = this.querySelector('.gallery-item-category').textContent;
+
+                    // Set modal data
+                    modalImage.src = imgSrc;
+                    modalImage.alt = title;
+                    modalTitle.textContent = title;
+                    modalDescription.textContent = desc;
+                    modalDate.textContent = '2023';
+                    modalTools.textContent = 'Stable Diffusion, Midjourney';
+
+                    // Create tags
+                    modalTags.innerHTML = `
+                        <span class="modal-tag">${category}</span>
+                        <span class="modal-tag">AI-Generated</span>
+                        <span class="modal-tag">Digital Art</span>
+                    `;
+
+                    // Show modal
+                    galleryModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+
+            // Close modal
+            modalClose.addEventListener('click', function() {
+                galleryModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Enable scrolling
+            });
+
+            // Close modal on outside click
+            galleryModal.addEventListener('click', function(e) {
+                if (e.target === galleryModal) {
+                    galleryModal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Enable scrolling
+                }
+            });
+
+            // Load more functionality
+            const loadMoreBtn = document.querySelector('.load-more');
+            let currentItems = 8;
+
+            loadMoreBtn.addEventListener('click', function() {
+                // This is a placeholder for loading more items
+                loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+
+                // Simulate loading time
+                setTimeout(() => {
+                    loadMoreBtn.innerHTML = '<i class="fas fa-check"></i> All Items Loaded';
+                    loadMoreBtn.disabled = true;
+                    loadMoreBtn.style.opacity = '0.7';
+                }, 1500);
+            });
+
+            // Mobile touch behavior for gallery items
+            galleryItems.forEach(item => {
+                item.addEventListener('touchstart', function() {
+                    this.classList.add('active');
+                });
+
+                item.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.classList.remove('active');
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+/* Language toggle styling for desktop - minimalistic version */
+.lang-item {
+    position: relative;
+    margin-left: 12px;
+}
+
+.lang-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    transition: var(--transition);
+    font-size: 1.2rem;
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+.lang-item a:hover {
+    color: var(--accent-purple);
+    text-shadow: var(--glow);
+    opacity: 1;
+}
+
+/* Remove the animation to make it more subtle */
+@keyframes subtle-fade {
+    0% { opacity: 0.7; }
+    50% { opacity: 0.9; }
+    100% { opacity: 0.7; }
+}
+
+.lang-item a {
+    animation: subtle-fade 4s infinite;
+}
+
+/* Stop animation on hover */
+.lang-item a:hover {
+    animation: none;
+}

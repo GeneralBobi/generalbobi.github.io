@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boran Birtanır | Personal Journey</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/mobile-nav-fix.css">
+    <link rel="stylesheet" href="assets/css/language-toggle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="animated-background">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+        <div class="geometric-shape shape-1"></div>
+        <div class="geometric-shape shape-2"></div>
+        <div class="geometric-shape shape-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">Boran<span>Birtanır</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="diary.html">Diary</a></li>
+                    <li><a href="socials.html">Socials</a></li>
+                </ul>
+            </nav>
+            <button class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <button class="close-btn">&times;</button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="diary.html">Diary</a></li>
+            <li><a href="socials.html">Socials</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title gradient-text fade-in">Boran Birtanır</h1>
+                <div class="hero-tagline">
+                    <span class="tag-item slide-in">Artist</span>
+                    <span class="tag-divider">•</span>
+                    <span class="tag-item slide-in" style="animation-delay: 0.2s;">Thinker</span>
+                    <span class="tag-divider">•</span>
+                    <span class="tag-item slide-in" style="animation-delay: 0.4s;">Creator</span>
+                </div>
+                <p class="hero-subtitle fade-in" style="animation-delay: 0.7s;">
+                    A curious mind exploring life through art, technology, and philosophy.
+                </p>
+                <div class="hero-cta fade-in" style="animation-delay: 1s;">
+                    <a href="#journey" class="btn btn-accent">Begin the Journey</a>
+                    <a href="diary.html" class="btn btn-outline">Read My Diary</a>
+                </div>
+
+                <div class="scroll-indicator">
+                    <div class="mouse">
+                        <div class="wheel"></div>
+                    </div>
+                    <div class="arrow">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero SVG Visual -->
+        <div class="hero-visual">
+            <svg viewBox="0 0 500 500" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" class="hero-svg">
+                <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#6E56CF" />
+                        <stop offset="100%" stop-color="#3E9BC0" />
+                    </linearGradient>
+                </defs>
+                <!-- Brain/Mind Concept -->
+                <path class="animate-path" d="M250,100 C350,100 400,200 400,250 C400,300 350,400 250,400 C150,400 100,300 100,250 C100,200 150,100 250,100 Z" fill="none" stroke="url(#grad1)" stroke-width="2" />
+                <circle class="pulse-circle" cx="250" cy="250" r="5" fill="#6E56CF" />
+                <!-- Neural Network -->
+                <g class="network-nodes">
+                    <circle class="node" cx="200" cy="175" r="4" fill="#6E56CF" />
+                    <circle class="node" cx="300" cy="180" r="4" fill="#3E9BC0" />
+                    <circle class="node" cx="230" cy="220" r="4" fill="#6E56CF" />
+                    <circle class="node" cx="270" cy="230" r="4" fill="#3E9BC0" />
+                    <circle class="node" cx="180" cy="240" r="4" fill="#6E56CF" />
+                    <circle class="node" cx="320" cy="250" r="4" fill="#3E9BC0" />
+                    <circle class="node" cx="220" cy="280" r="4" fill="#6E56CF" />
+                    <circle class="node" cx="280" cy="270" r="4" fill="#3E9BC0" />
+                    <circle class="node" cx="190" cy="320" r="4" fill="#6E56CF" />
+                    <circle class="node" cx="310" cy="310" r="4" fill="#3E9BC0" />
+                </g>
+                <!-- Connection Lines -->
+                <g class="network-connections">
+                    <line x1="200" y1="175" x2="230" y2="220" stroke="#6E56CF" stroke-width="1" opacity="0.5" class="connection" />
+                    <line x1="300" y1="180" x2="270" y2="230" stroke="#3E9BC0" stroke-width="1" opacity="0.5" class="connection" />
+                    <line x1="230" y1="220" x2="270" y2="230" stroke="#6E56CF" stroke-width="1" opacity="0.5" class="connection" />
+                    <line x1="180" y1="240" x2="220" y2="280" stroke="#3E9BC0" stroke-width="1" opacity="0.5" class="connection" />
+                    <line x1="320" y1="250" x2="280" y2="270" stroke="#6E56CF" stroke-width="1" opacity="0.5" class="connection" />
+                    <line x1="220" y1="280" x2="190" y2="320" stroke="#3E9BC0" stroke-width="1" opacity="0.5" class="connection" />
+                    <line x1="280" y1="270" x2="310" y2="310" stroke="#6E56CF" stroke-width="1" opacity="0.5" class="connection" />
+                    <line x1="230" y1="220" x2="320" y2="250" stroke="#3E9BC0" stroke-width="1" opacity="0.5" class="connection" />
+                    <line x1="270" y1="230" x2="180" y2="240" stroke="#6E56CF" stroke-width="1" opacity="0.5" class="connection" />
+                </g>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey" class="journey section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in-up">My Journey</h2>
+                <div class="section-divider">
+                    <span></span><i class="fas fa-compass"></i><span></span>
+                </div>
+                <p class="section-subtitle fade-in-up">Exploring the interconnected realms of thought and creation</p>
+            </div>
+
+            <div class="journey-grid">
+                <!-- Mind Card -->
+                <div class="journey-card fade-in-left">
+                    <div class="journey-icon">
+                        <svg viewBox="0 0 100 100" width="80" height="80">
+                            <circle cx="50" cy="50" r="40" fill="none" stroke="#6E56CF" stroke-width="2" class="svg-animate rotate" />
+                            <path d="M50,20 C70,20 80,35 80,50 C80,65 70,80 50,80 C30,80 20,65 20,50 C20,35 30,20 50,20 Z" fill="none" stroke="#6E56CF" stroke-width="2" class="svg-animate pulse" />
+                            <circle cx="50" cy="50" r="5" fill="#6E56CF" class="svg-animate bounce" />
+                        </svg>
+                    </div>
+                    <h3>Mind</h3>
+                    <p>Exploring philosophical questions about consciousness, existence, and the nature of reality. What does it mean to be human in a digital age?</p>
+                    <a href="about.html#philosophy" class="card-link">Explore Thoughts <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Art Card -->
+                <div class="journey-card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="journey-icon">
+                        <svg viewBox="0 0 100 100" width="80" height="80">
+                            <rect x="30" y="30" width="40" height="40" rx="5" fill="none" stroke="#3E9BC0" stroke-width="2" class="svg-animate scale" />
+                            <circle cx="40" cy="40" r="15" fill="none" stroke="#3E9BC0" stroke-width="2" class="svg-animate scale" />
+                            <polygon points="70,40 85,50 70,60" fill="none" stroke="#3E9BC0" stroke-width="2" class="svg-animate rotate" />
+                        </svg>
+                    </div>
+                    <h3>Art</h3>
+                    <p>Discovering expression through AI-generated art, visual design, and creative collaboration with emerging technologies.</p>
+                    <a href="gallery.html" class="card-link">View Gallery <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Technology Card -->
+                <div class="journey-card fade-in-right" style="animation-delay: 0.4s;">
+                    <div class="journey-icon">
+                        <svg viewBox="0 0 100 100" width="80" height="80">
+                            <line x1="20" y1="50" x2="80" y2="50" stroke="#6E56CF" stroke-width="2" class="svg-animate expand" />
+                            <line x1="50" y1="20" x2="50" y2="80" stroke="#6E56CF" stroke-width="2" class="svg-animate expand" />
+                            <circle cx="50" cy="50" r="15" fill="none" stroke="#6E56CF" stroke-width="2" class="svg-animate pulse" />
+                            <circle cx="30" cy="30" r="5" fill="#3E9BC0" class="svg-animate bounce" />
+                            <circle cx="70" cy="30" r="5" fill="#3E9BC0" class="svg-animate bounce" style="animation-delay: 0.2s;" />
+                            <circle cx="30" cy="70" r="5" fill="#3E9BC0" class="svg-animate bounce" style="animation-delay: 0.4s;" />
+                            <circle cx="70" cy="70" r="5" fill="#3E9BC0" class="svg-animate bounce" style="animation-delay: 0.6s;" />
+                        </svg>
+                    </div>
+                    <h3>Technology</h3>
+                    <p>Engaging with innovations that expand human creativity and connection, while reflecting on their broader implications.</p>
+                    <a href="timeline.html" class="card-link">See Timeline <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parallax Elements -->
+        <div class="parallax-element element-1" data-speed="-0.2"></div>
+        <div class="parallax-element element-2" data-speed="0.1"></div>
+    </section>
+
+    <!-- Featured Entry Section -->
+    <section class="featured-entry section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in-up">From My Diary</h2>
+                <div class="section-divider">
+                    <span></span><i class="fas fa-book"></i><span></span>
+                </div>
+                <p class="section-subtitle fade-in-up">Recent thoughts and reflections</p>
+            </div>
+
+            <div class="entry-showcase fade-in-up">
+                <div class="featured-entry-content">
+                    <span class="entry-date">June 15, 2023</span>
+                    <h3 class="entry-title">The Beauty of Uncertainty</h3>
+                    <div class="entry-excerpt">
+                        <p>Today I found myself contemplating the nature of uncertainty. We often seek certainty in our lives—clear answers, defined paths, concrete goals. But I'm beginning to appreciate how uncertainty creates space for wonder, discovery, and growth.</p>
+
+                        <p>When we don't know what comes next, we remain open to possibilities we might otherwise miss...</p>
+                    </div>
+                    <div class="entry-tags">
+                        <span class="tag">uncertainty</span>
+                        <span class="tag">mindfulness</span>
+                        <span class="tag">philosophy</span>
+                    </div>
+                    <a href="diary.html" class="btn btn-accent">Read More in My Diary</a>
+                </div>
+                <div class="featured-entry-visual">
+                    <div class="quote-box">
+                        <svg viewBox="0 0 200 200" width="100%" height="100%" class="quote-svg">
+                            <defs>
+                                <linearGradient id="quoteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#6E56CF" stop-opacity="0.8" />
+                                    <stop offset="100%" stop-color="#3E9BC0" stop-opacity="0.8" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="10" y="10" width="180" height="180" rx="20" fill="url(#quoteGrad)" opacity="0.2" />
+                            <text x="30" y="70" fill="#6E56CF" font-size="60" font-family="Georgia" opacity="0.5">"</text>
+                            <text x="150" y="150" fill="#3E9BC0" font-size="60" font-family="Georgia" opacity="0.5">"</text>
+                        </svg>
+                        <div class="quote-content">
+                            <p>"Perhaps the most meaningful approach is to embrace uncertainty while still having direction—to set intentions without rigid attachments to outcomes."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animated Wave SVG -->
+        <div class="wave-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" class="wave-svg">
+                <path fill="#1a1a1a" fill-opacity="1" d="M0,192L48,208C96,224,192,256,288,261.3C384,267,480,245,576,218.7C672,192,768,160,864,170.7C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Visual Gallery Preview -->
+    <section class="gallery-preview section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in-up">Visual Explorations</h2>
+                <div class="section-divider">
+                    <span></span><i class="fas fa-images"></i><span></span>
+                </div>
+                <p class="section-subtitle fade-in-up">A glimpse into my creative expressions</p>
+            </div>
+
+            <div class="preview-grid">
+                <div class="preview-item item-large fade-in">
+                    <div class="preview-content">
+                        <h3>Digital Dreams</h3>
+                        <p>AI-generated art exploring the boundaries of consciousness</p>
+                        <a href="gallery.html" class="preview-link">Explore Gallery</a>
+                    </div>
+                </div>
+                <div class="preview-item fade-in" style="animation-delay: 0.2s;">
+                    <div class="preview-content">
+                        <h3>Neural Melodies</h3>
+                        <p>Music compositions</p>
+                    </div>
+                </div>
+                <div class="preview-item fade-in" style="animation-delay: 0.3s;">
+                    <div class="preview-content">
+                        <h3>Geometric Essence</h3>
+                        <p>Visual minimalism</p>
+                    </div>
+                </div>
+                <div class="preview-item fade-in" style="animation-delay: 0.4s;">
+                    <div class="preview-content">
+                        <h3>Cognitive Spaces</h3>
+                        <p>Abstract mind maps</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connection Section -->
+    <section class="connection section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in-up">Let's Connect</h2>
+                <div class="section-divider">
+                    <span></span><i class="fas fa-link"></i><span></span>
+                </div>
+                <p class="section-subtitle fade-in-up">Join me on this journey of exploration</p>
+            </div>
+
+            <div class="connection-content">
+                <div class="connection-message fade-in-left">
+                    <p>I believe in the power of shared ideas and collaborative growth. Whether you're interested in philosophy, art, technology, or simply want to share your own perspectives, I'd love to connect.</p>
+                    <p>Find me on various platforms and let's start a conversation that might lead us both to new insights.</p>
+                </div>
+
+                <div class="social-showcase fade-in-right">
+                    <a href="#" class="social-card twitter">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="#" class="social-card instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="#" class="social-card github">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="social-card linkedin">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+
+                    <a href="socials.html" class="btn btn-accent all-socials-btn">See All Connections</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Boran<span>Birtanır</span></h3>
+                    <p>A personal journey through art, technology, and philosophy.</p>
+                </div>
+                <div class="footer-navigation">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                        <li><a href="socials.html">Socials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Boran Birtanır. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/translation.js"></script>
+    <script src="assets/js/device-detection-mobile.js"></script>
+</body>
+</html>

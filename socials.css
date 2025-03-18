@@ -1,0 +1,292 @@
+/* Socials Page Styles */
+
+/* Page Header */
+.page-header {
+    padding: 150px 0 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #121212, #12121a);
+}
+
+.page-title {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+.page-description {
+    color: var(--color-text-secondary);
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Social Grid */
+.socials-container {
+    background-color: #12121a;
+}
+
+.socials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.social-panel {
+    display: flex;
+    background-color: var(--color-bg-secondary);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.social-panel:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon-container {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    transition: all var(--transition-speed) ease;
+}
+
+.social-content {
+    flex: 1;
+    padding: var(--spacing-lg);
+    padding-left: var(--spacing-md);
+}
+
+.social-content h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.social-content p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.5;
+}
+
+.social-link-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-link-container span {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    font-family: var(--font-secondary);
+}
+
+.social-link-container .btn {
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Social Panel Specific Styles */
+.social-panel.twitter .social-icon-container {
+    background-color: #1da1f2;
+}
+
+.social-panel.twitter:hover {
+    border-color: #1da1f2;
+}
+
+.social-panel.twitter .btn {
+    background-color: #1da1f2;
+    color: white;
+}
+
+.social-panel.instagram .social-icon-container {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.social-panel.instagram:hover {
+    border-color: #e1306c;
+}
+
+.social-panel.instagram .btn {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+}
+
+.social-panel.github .social-icon-container {
+    background-color: #333;
+}
+
+.social-panel.github:hover {
+    border-color: #333;
+}
+
+.social-panel.github .btn {
+    background-color: #333;
+    color: white;
+}
+
+.social-panel.linkedin .social-icon-container {
+    background-color: #0077b5;
+}
+
+.social-panel.linkedin:hover {
+    border-color: #0077b5;
+}
+
+.social-panel.linkedin .btn {
+    background-color: #0077b5;
+    color: white;
+}
+
+.social-panel.discord .social-icon-container {
+    background-color: #7289da;
+}
+
+.social-panel.discord:hover {
+    border-color: #7289da;
+}
+
+.social-panel.discord .btn {
+    background-color: #7289da;
+    color: white;
+}
+
+.social-panel.email .social-icon-container {
+    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+}
+
+.social-panel.email:hover {
+    border-color: var(--color-accent-primary);
+}
+
+.social-panel.email .btn {
+    background-color: var(--color-accent-primary);
+    color: white;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    background-color: #121217;
+}
+
+.newsletter-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+    background-color: var(--color-bg-secondary);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-xl);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.newsletter-content h2 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-accent-primary);
+}
+
+.newsletter-content p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-lg);
+    max-width: 500px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+}
+
+.newsletter-form input:focus {
+    outline: none;
+    border-color: var(--color-accent-primary);
+}
+
+.privacy-note {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    opacity: 0.7;
+}
+
+.newsletter-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .socials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .newsletter-container {
+        grid-template-columns: 1fr;
+        padding: var(--spacing-lg);
+    }
+
+    .newsletter-visual {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        padding: 120px 0 40px;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .social-panel {
+        flex-direction: column;
+    }
+
+    .social-icon-container {
+        width: 100%;
+        padding: var(--spacing-md) 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .page-description {
+        font-size: 1rem;
+    }
+}
